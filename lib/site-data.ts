@@ -18,44 +18,37 @@ export const products: Product[] = [
   {
     slug: "arachides-fraiches",
     name: "Arachides fraiches",
-    format: "5kg, 10kg",
-    summary: "Qualite premium, fraicheur garantie.",
-    image: "/images/hero-kbp.png"
+    format: "5 kg, 10 kg",
+    summary: "Arachides fraiches de qualite premium, recoltees en Cote d'Ivoire, au Benin et au Togo.",
+    image: "/images/arachides-fraiches.jpg"
   },
   {
-    slug: "arachides-grillees",
-    name: "Arachides grillees",
-    format: "300g",
-    summary: "Parfaitement torrefiees pour les points de vente.",
-    image: "/images/product-grid-2.png"
+    slug: "arachides-salees-grillees-bouteille",
+    name: "Arachides salees grillees — Bouteille",
+    format: "400 g, 600 g",
+    summary: "Grillees et salees selon la methode traditionnelle. En bouteille pratique, ideal pour la vente au detail. Origine : Togo, Cote d'Ivoire, Benin.",
+    image: "/images/arachides-salees-bouteille.jpg"
+  },
+  {
+    slug: "arachides-salees-grillees-togo",
+    name: "Arachides salees grillees — Togo",
+    format: "300 g, 600 g",
+    summary: "Variete du Togo aux saveurs intenses, grillees a sec et legerement salees. Parfaite pour les epiceries et revendeurs.",
+    image: "/images/arachides-salees-orange.jpg"
   },
   {
     slug: "arachides-caramelisees",
-    name: "Arachides caramelisees",
+    name: "Arachides caramelisees en boules",
+    format: "300 g",
+    summary: "Arachides enrobees de caramel selon une recette traditionnelle togolaise. Sucrees, croustillantes, irresistibles.",
+    image: "/images/arachides-caramelisees.jpg"
+  },
+  {
+    slug: "nougat-africain",
+    name: "Nougat africain",
     format: "Format professionnel",
-    summary: "Saveur unique et authentique.",
-    image: "/images/hero-kbp.png"
-  },
-  {
-    slug: "gingembre-caramelise",
-    name: "Gingembre caramelise",
-    format: "Conditionnement B2B",
-    summary: "Gout intense et naturel.",
-    image: "/images/product-grid-2.png"
-  },
-  {
-    slug: "arachides-sucrees",
-    name: "Arachides sucrees",
-    format: "Format professionnel",
-    summary: "Equilibre parfait entre douceur et texture.",
-    image: "/images/hero-kbp.png"
-  },
-  {
-    slug: "petit-cola",
-    name: "Petit cola",
-    format: "15kg",
-    summary: "Produit premium africain pour distribution specialisee.",
-    image: "/images/product-grid-2.png"
+    summary: "Nougat artisanal aux saveurs authentiques d'Afrique de l'Ouest. Produit de specialite ideal pour epiceries fines et distribution selective.",
+    image: "/images/nougat.jpg"
   }
 ];
 
