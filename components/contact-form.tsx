@@ -7,13 +7,15 @@ type FormState = {
   email: string;
   phone: string;
   message: string;
+  website: string;
 };
 
 const initialState: FormState = {
   company: "",
   email: "",
   phone: "",
-  message: ""
+  message: "",
+  website: ""
 };
 
 export function ContactForm() {
@@ -98,10 +100,21 @@ export function ContactForm() {
         />
       </div>
 
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="website">Website</label>
+        <input
+          id="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.website}
+          onChange={(event) => setForm((prev) => ({ ...prev, website: event.target.value }))}
+        />
+      </div>
+
       <button
         type="submit"
         disabled={status === "loading"}
-        className="rounded-2xl bg-kbp-red px-6 py-3 text-lg font-semibold text-white transition hover:bg-kbp-redDark disabled:cursor-not-allowed disabled:opacity-70"
+        className="rounded-[10px] bg-kbp-red px-6 py-3 text-base font-normal text-white transition hover:bg-kbp-redDark disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === "loading" ? "Envoi en cours..." : "Demander un devis"}
       </button>
