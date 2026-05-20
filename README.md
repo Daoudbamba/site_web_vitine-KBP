@@ -1,52 +1,110 @@
-# KBP Distribution - Site vitrine B2B
+# KBP Distribution — Site vitrine B2B
 
-Site web vitrine professionnel realise avec Next.js pour KBP Distribution.
+Site web vitrine professionnel pour **KBP Distribution**, distributeur d'arachides et de nougat africain.
+Realise avec Next.js 15 (App Router), React 19, TypeScript et Tailwind CSS.
 
 ## Stack technique
 
-- Next.js (App Router)
-- React
-- Tailwind CSS
-- TypeScript
+| Technologie | Role |
+|---|---|
+| Next.js 15 (App Router) | Framework React full-stack, rendu statique |
+| React 19 + TypeScript | UI typee strictement |
+| Tailwind CSS 3 | Styles utilitaires, tokens de marque KBP |
+| nodemailer | Envoi d'emails via l'API route `/api/devis` |
+
+## Pages
+
+| Route | Description |
+|---|---|
+| `/` | Accueil — hero, produits en vedette, appel a l'action |
+| `/produits` | Catalogue complet des 5 produits |
+| `/a-propos` | Presentation de KBP Distribution |
+| `/logistique` | Processus de commande et livraison |
+| `/contact` | Formulaire de devis + coordonnees |
+| `/mentions-legales` | Mentions legales |
+| `/cgv` | Conditions generales de vente |
+| `/politique-confidentialite` | Politique RGPD |
+| `/politique-cookies` | Politique cookies |
 
 ## Installation
 
-1. Installer les dependances:
-
 ```bash
+# 1. Installer les dependances
 npm install
-```
 
-2. Lancer le serveur de developpement:
+# 2. Configurer les variables d'environnement
+cp .env.example .env.local
+# Remplir .env.local avec vos credentials SMTP
 
-```bash
+# 3. Lancer le serveur de developpement
 npm run dev
 ```
 
-3. Ouvrir dans le navigateur:
+Ouvrir [http://localhost:3000](http://localhost:3000) dans le navigateur.
 
-http://localhost:3000
+## Variables d'environnement
+
+Copier `.env.example` en `.env.local` et renseigner :
+
+```env
+CONTACT_EMAIL_TO=contact@kbpdistribution.com
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=votre_utilisateur_smtp
+SMTP_PASS=votre_mot_de_passe_smtp
+SMTP_FROM="KBP Distribution <no-reply@kbpdistribution.com>"
+```
+
+> Sur Vercel, ces variables sont a configurer dans **Project Settings → Environment Variables**.
 
 ## Scripts
 
-- npm run dev : mode developpement
-- npm run build : build production
-- npm run start : serveur production
-- npm run lint : verification du code
+```bash
+npm run dev      # Mode developpement (hot reload)
+npm run build    # Build de production
+npm run start    # Serveur de production
+npm run lint     # Verification du code (ESLint)
+```
 
-## Structure
+## Structure du projet
 
-- app : pages, layout, routes API, SEO technique
-- components : composants UI reutilisables
-- lib : donnees metier et configuration contenu
-- public/images : assets images
+```
+app/                    # Pages et routes (App Router)
+  api/devis/            # Route API — envoi de devis par email
+  a-propos/             # Page Apropos
+  produits/             # Catalogue produits
+  logistique/           # Logistique & livraison
+  contact/              # Formulaire de contact
+  cgv/                  # CGV
+  mentions-legales/     # Mentions legales
+  politique-*/          # Pages RGPD
+components/             # Composants UI reutilisables
+  header.tsx            # Navigation principale
+  footer.tsx            # Pied de page
+  logo.tsx              # Composant logo KBP (variantes couleur/blanc)
+  product-card.tsx      # Carte produit
+  contact-form.tsx      # Formulaire de devis
+lib/
+  site-data.ts          # Donnees produits et contenu du site
+public/images/          # Assets images (logo, photos produits)
+.env.example            # Modele de configuration SMTP
+```
 
-## SEO et performance
+## SEO et performances
 
-- Metadata OpenGraph et robots indexes
-- sitemap.xml et robots.txt generes automatiquement
-- Images optimisees via next/image
-- Police chargee avec next/font
+- Metadata OpenGraph complete sur chaque page
+- `sitemap.xml` et `robots.txt` generes automatiquement
+- Images optimisees via `next/image`
+- Headers de securite HTTP (CSP, HSTS, X-Frame-Options, etc.)
+- Routes statiques pre-rendues au build
+
+## Pages legales
+
+- /mentions-legales
+- /politique-confidentialite
+- /politique-cookies
+- /cgv
 
 ## Accessibilite
 
@@ -75,8 +133,17 @@ http://localhost:3000
 3. npm run start
 4. Mettre en place un reverse proxy Nginx
 
-## Variables futures conseillees
+## Variables d'environnement
 
 - CONTACT_EMAIL_TO : destinataire des demandes
-- SMTP_* : envoi email automatique des formulaires
+- SMTP_HOST, SMTP_PORT, SMTP_SECURE
+- SMTP_USER, SMTP_PASS, SMTP_FROM
 - NEXT_PUBLIC_SITE_URL : URL canonique
+
+Voir [.env.example](.env.example) pour un modele complet.
+
+## Pilotage projet
+
+- Plan d'avancement : [docs/PLAN_AVANCEMENT.md](docs/PLAN_AVANCEMENT.md)
+- Routage IA par tache : [docs/ROUTAGE_IA_TACHES.md](docs/ROUTAGE_IA_TACHES.md)
+- Convention de commits : [CONVENTION_COMMITS.md](CONVENTION_COMMITS.md)
