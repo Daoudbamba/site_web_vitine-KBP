@@ -2,50 +2,62 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Box, CheckCheck, Package } from "lucide-react";
+import { products } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Produits",
   description: "Catalogue premium KBP Distribution avec formats professionnels pour clients B2B."
 };
 
-export default function ProductsPage() {
-  const categories = [
-    { label: "Arachides", count: 2, yellow: false },
-    { label: "Arachides sucrees", count: 2, yellow: true },
-    { label: "Specialites", count: 1, yellow: false },
-    { label: "Produits africains", count: 1, yellow: true }
-  ] as const;
+const productDetails: Record<string, { category: string; features: string[] }> = {
+  "arachides-fraiches": {
+    category: "Arachides fraiches",
+    features: [
+      "Recoltees en Cote d'Ivoire, Benin et Togo",
+      "Qualite premium garantie lot par lot",
+      "Conditionnement B2B 5 kg et 10 kg",
+      "Tracabilite complete de l'origine"
+    ]
+  },
+  "arachides-salees-grillees-bouteille": {
+    category: "Arachides transformees",
+    features: [
+      "Grillees et salees selon methode traditionnelle",
+      "Bouteille pratique pour la vente au detail",
+      "Formats 400 g et 600 g disponibles",
+      "Origine : Togo, Cote d'Ivoire, Benin"
+    ]
+  },
+  "arachides-salees-grillees-togo": {
+    category: "Arachides transformees",
+    features: [
+      "Variete du Togo aux saveurs intenses",
+      "Grillees a sec, legerement salees",
+      "Formats 300 g et 600 g",
+      "Ideal epiceries et revendeurs"
+    ]
+  },
+  "arachides-caramelisees": {
+    category: "Arachides sucrees",
+    features: [
+      "Recette traditionnelle togolaise",
+      "Enrobage caramel croustillant",
+      "Format 300 g pret a la vente",
+      "Sans colorants ni conservateurs artificiels"
+    ]
+  },
+  "nougat-africain": {
+    category: "Specialites africaines",
+    features: [
+      "Fabrication artisanale traditionnelle",
+      "Saveurs authentiques d'Afrique de l'Ouest",
+      "Ideal epiceries fines et revendeurs selectifs",
+      "Conditionnement professionnel disponible"
+    ]
+  }
+};
 
-  const productSections = [
-    {
-      name: "Arachides fraiches",
-      category: "Arachides",
-      formats: ["5kg", "10kg"],
-      description:
-        "Arachides fraiches de qualite premium, parfaites pour la revente en magasin ou la transformation. Conditionnement professionnel adapte aux besoins des grossistes et distributeurs.",
-      features: [
-        "Qualite superieure garantie",
-        "Fraicheur optimale",
-        "Tracabilite complete",
-        "Conditionnement adapte au B2B"
-      ],
-      image: "/images/hero-kbp.png"
-    },
-    {
-      name: "Arachides grillees",
-      category: "Arachides",
-      formats: ["300g"],
-      description:
-        "Arachides parfaitement grillees, pretes a la consommation. Format 300g ideal pour la vente au detail en supermarche. Gout authentique et texture croustillante.",
-      features: [
-        "Torrefaction artisanale",
-        "Sans additifs artificiels",
-        "Packaging attractif",
-        "Longue conservation"
-      ],
-      image: "/images/product-grid-2.png"
-    }
-  ] as const;
+export default function ProductsPage() {
 
   const guarantees = [
     {
@@ -76,77 +88,62 @@ export default function ProductsPage() {
 
   return (
     <div>
-      <section className="bg-kbp-red text-white">
-        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-28">
-          <h1 className="font-display text-6xl font-semibold leading-tight sm:text-7xl">Notre gamme de produits</h1>
-          <p className="mt-6 max-w-5xl text-2xl text-white/90 sm:text-3xl">
+      <section className="kbp-hero">
+        <div className="kbp-hero-inner mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h1 className="kbp-h1">Notre gamme de produits</h1>
+          <p className="kbp-body mt-6 max-w-5xl text-white/90">
             Decouvrez notre selection de produits alimentaires premium, soigneusement choisis pour repondre aux
             exigences des professionnels
           </p>
         </div>
       </section>
 
-      <section className="border-b border-slate-200 bg-kbp-panel py-12">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-4 px-4 sm:px-6 lg:px-8">
-          {categories.map((item) => (
-            <div
-              key={item.label}
-              className={`inline-flex items-center gap-3 rounded-full px-8 py-3 text-2xl ${
-                item.yellow ? "bg-kbp-yellow/35 text-yellow-700" : "bg-kbp-red/12 text-kbp-red"
-              }`}
-            >
-              <Package className="h-6 w-6" aria-hidden="true" />
-              <span>
-                {item.label} <span className="opacity-70">({item.count})</span>
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-kbp-panel py-14 sm:py-16">
+      <section className="bg-kbp-panel kbp-section">
         <div className="mx-auto max-w-7xl space-y-10 px-4 sm:px-6 lg:px-8">
-          {productSections.map((item, index) => {
+          {products.map((item, index) => {
+            const detail = productDetails[item.slug];
             const reverse = index % 2 === 1;
             return (
-              <article key={item.name} className="overflow-hidden rounded-[2rem] bg-white shadow-soft">
+              <article key={item.slug} className="overflow-hidden rounded-[2rem] bg-white shadow-soft">
                 <div className={`grid lg:grid-cols-2 ${reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
-                  <div className="relative min-h-[22rem] sm:min-h-[28rem]">
+                  <div className="flex min-h-[28rem] items-center justify-center bg-kbp-panel p-6 sm:min-h-[36rem]">
                     <Image
                       src={item.image}
                       alt={item.name}
-                      fill
-                      className="object-cover"
+                      width={400}
+                      height={560}
+                      className="h-full max-h-[32rem] w-auto object-contain drop-shadow-md"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
-                    <p className="absolute left-5 top-5 rounded-full bg-white px-6 py-2 text-2xl text-kbp-red">{item.category}</p>
+                    {detail && (
+                      <p className="absolute left-5 top-5 rounded-full bg-white px-5 py-2 text-lg text-kbp-red md:text-xl">{detail.category}</p>
+                    )}
                   </div>
 
                   <div className="p-8 sm:p-10 lg:p-12">
-                    <h2 className="font-display text-6xl font-semibold text-kbp-ink">{item.name}</h2>
+                    <h2 className="kbp-h2 text-kbp-ink">{item.name}</h2>
                     <div className="mt-6 flex flex-wrap gap-3">
-                      {item.formats.map((format) => (
-                        <span key={format} className="rounded-full bg-kbp-yellow/35 px-5 py-2 text-2xl text-yellow-700">
+                      {item.format.split(", ").map((format) => (
+                        <span key={format} className="rounded-full bg-kbp-yellow/35 px-5 py-2 text-lg text-kbp-yellowDeep md:text-xl">
                           {format}
                         </span>
                       ))}
                     </div>
 
-                    <p className="mt-8 text-2xl leading-relaxed text-kbp-slate sm:text-3xl">{item.description}</p>
+                    <p className="kbp-body mt-8 text-kbp-slate">{item.summary}</p>
 
-                    <ul className="mt-8 space-y-4 text-2xl text-kbp-slate sm:text-3xl">
-                      {item.features.map((feature) => (
-                        <li key={feature} className="flex items-center gap-4">
-                          <CheckCheck className="h-8 w-8 text-kbp-red" aria-hidden="true" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    {detail && (
+                      <ul className="kbp-body mt-8 space-y-4 text-kbp-slate">
+                        {detail.features.map((feature) => (
+                          <li key={feature} className="flex items-center gap-4">
+                            <CheckCheck className="h-8 w-8 shrink-0 text-kbp-red" aria-hidden="true" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
 
-                    <Link
-                      href="/contact"
-                      className="mt-9 inline-flex items-center gap-3 rounded-2xl bg-kbp-red px-8 py-4 text-2xl font-semibold text-white transition hover:bg-kbp-redDark"
-                    >
+                    <Link href="/contact" className="kbp-btn-danger mt-9">
                       Demander un devis
                       <ArrowRight className="h-7 w-7" aria-hidden="true" />
                     </Link>
@@ -158,11 +155,11 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      <section className="bg-kbp-panel py-16 sm:py-20">
+      <section className="bg-kbp-panel kbp-section">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="font-display text-6xl font-semibold text-kbp-ink sm:text-7xl">Pourquoi choisir nos produits ?</h2>
-            <p className="mt-4 text-2xl text-kbp-slate sm:text-3xl">Des garanties qui font la difference</p>
+            <h2 className="kbp-h2 text-kbp-ink">Pourquoi choisir nos produits ?</h2>
+            <p className="kbp-subtitle mt-4 text-kbp-slate">Des garanties qui font la difference</p>
           </div>
 
           <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -171,14 +168,14 @@ export default function ProductsPage() {
               return (
                 <article key={item.title} className="text-center">
                   <div
-                    className={`mx-auto mb-6 grid h-24 w-24 place-items-center rounded-3xl ${
+                    className={`kbp-icon-box mx-auto mb-6 ${
                       item.yellow ? "bg-kbp-yellow/35" : "bg-kbp-red/12"
                     }`}
                   >
-                    <Icon className={`h-12 w-12 ${item.yellow ? "text-yellow-700" : "text-kbp-red"}`} aria-hidden="true" />
+                    <Icon className={`kbp-icon ${item.yellow ? "text-kbp-yellowDeep" : "text-kbp-red"}`} aria-hidden="true" />
                   </div>
-                  <h3 className="font-display text-5xl font-semibold text-kbp-ink">{item.title}</h3>
-                  <p className="mt-4 text-2xl text-kbp-slate sm:text-3xl">{item.description}</p>
+                  <h3 className="kbp-h3 text-kbp-ink">{item.title}</h3>
+                  <p className="kbp-subtitle mt-4 text-kbp-slate">{item.description}</p>
                 </article>
               );
             })}
@@ -186,23 +183,23 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      <section className="bg-kbp-red py-20 text-white sm:py-24">
+      <section className="kbp-hero kbp-section">
         <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="font-display text-6xl font-semibold sm:text-7xl">Interesse par nos produits ?</h2>
-          <p className="mx-auto mt-6 max-w-4xl text-2xl text-white/90 sm:text-3xl">
+          <h2 className="kbp-h2 text-white">Interesse par nos produits ?</h2>
+          <p className="kbp-body mx-auto mt-6 max-w-4xl text-white/90">
             Contactez-nous pour recevoir notre catalogue complet avec les tarifs professionnels
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-3 rounded-2xl bg-kbp-yellow px-9 py-4 text-2xl font-semibold text-kbp-ink transition hover:brightness-95"
+              className="kbp-btn-primary"
             >
               Demander un devis
               <ArrowRight className="h-7 w-7" aria-hidden="true" />
             </Link>
             <Link
               href="/logistique"
-              className="inline-flex items-center rounded-2xl border border-white/40 bg-white/10 px-9 py-4 text-2xl font-semibold text-white"
+              className="kbp-btn-secondary"
             >
               Notre logistique
             </Link>
