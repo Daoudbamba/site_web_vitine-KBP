@@ -8,7 +8,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/a-propos",
     "/produits",
     "/logistique",
-    "/contact"
+    "/contact",
+    "/mentions-legales",
+    "/politique-confidentialite",
+    "/politique-cookies",
+    "/cgv"
   ].map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date(),
