@@ -15,56 +15,53 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className="bg-kbp-red text-white">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
+      <section className="kbp-hero">
+        <div className="kbp-hero-inner mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
           <div>
             <p className="fade-up inline-flex rounded-full bg-kbp-yellow px-5 py-2 text-lg font-semibold text-kbp-ink">
               Importation & Distribution Premium
             </p>
-            <h1 className="fade-up-delay-1 mt-6 font-display text-6xl font-semibold leading-[1.05] sm:text-7xl">
+            <h1 className="kbp-h1 fade-up-delay-1 mt-6">
               KBP Distribution
             </h1>
-            <p className="fade-up-delay-2 mt-6 max-w-2xl text-2xl text-white/90">
+            <p className="kbp-body fade-up-delay-2 mt-6 max-w-2xl text-white/90">
               Votre partenaire de confiance pour l&apos;importation et la distribution de produits alimentaires de qualite en Europe.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Link href="/contact" className="rounded-2xl bg-kbp-yellow px-8 py-4 text-xl font-semibold text-kbp-ink">
+              <Link href="/contact" className="kbp-btn-primary">
                 Demander un devis
               </Link>
-              <Link
-                href="/produits"
-                className="rounded-2xl border border-white/35 bg-white/10 px-8 py-4 text-xl font-semibold text-white"
-              >
+              <Link href="/produits" className="kbp-btn-secondary">
                 Decouvrir nos produits
               </Link>
             </div>
-            <ul className="mt-8 flex flex-wrap items-center gap-8 text-2xl">
+            <ul className="mt-8 flex flex-nowrap items-center gap-3 text-sm sm:gap-4 sm:text-base md:gap-5 md:text-lg">
               {heroFeatures.map((feature) => {
                 const Icon = feature.icon;
                 return (
-                  <li key={feature.label} className="inline-flex items-center gap-3 text-kbp-yellow">
-                    <Icon className="h-8 w-8" aria-hidden="true" />
-                    <span className="font-medium text-kbp-yellow">{feature.label}</span>
+                  <li key={feature.label} className="inline-flex items-center gap-2 text-white sm:gap-3">
+                    <Icon className="h-5 w-5 text-kbp-yellow sm:h-6 sm:w-6 md:h-7 md:w-7" aria-hidden="true" />
+                    <span className="font-medium text-white">{feature.label}</span>
                   </li>
                 );
               })}
             </ul>
           </div>
-          <div className="relative h-[28rem] overflow-hidden rounded-[2rem] border border-white/20 shadow-2xl">
+          <div className="flex items-center justify-center">
             <Image
-              src="/images/hero-kbp.png"
-              alt="Stock de produits KBP Distribution"
-              fill
+              src="/images/logo-kbp.png"
+              alt="KBP Distribution — L'arachide fraîche, nos produits, votre confiance"
+              width={520}
+              height={520}
               priority
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="w-full max-w-[420px] drop-shadow-2xl"
             />
           </div>
         </div>
       </section>
 
       <section className="bg-kbp-panel">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
+        <div className="kbp-section-tight mx-auto grid max-w-7xl gap-8 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           {highlights.map((item) => (
             <article key={item.label} className="rounded-3xl bg-white p-8 text-center shadow-soft">
               <p className="font-display text-6xl font-semibold text-kbp-red">{item.value}</p>
@@ -74,10 +71,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <section className="kbp-section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="font-display text-6xl font-semibold text-kbp-ink">Notre gamme de produits</h2>
-          <p className="mt-4 text-2xl text-kbp-slate">
+          <h2 className="kbp-h2 text-kbp-ink">Notre gamme de produits</h2>
+          <p className="kbp-subtitle mt-4 text-kbp-slate">
             Des produits alimentaires premium selectionnes pour repondre aux exigences des professionnels.
           </p>
         </div>
@@ -89,17 +86,17 @@ export default function HomePage() {
         </div>
 
         <div className="mt-12 text-center">
-          <Link href="/produits" className="inline-flex rounded-2xl bg-kbp-red px-10 py-4 text-xl font-semibold text-white">
+          <Link href="/produits" className="kbp-btn-danger">
             Voir tous les produits
           </Link>
         </div>
       </section>
 
       <section className="bg-kbp-panel">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="kbp-section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="font-display text-6xl font-semibold text-kbp-ink">Pourquoi choisir KBP Distribution ?</h2>
-            <p className="mt-4 text-2xl text-kbp-slate">Un partenaire fiable pour vos besoins en distribution alimentaire</p>
+            <h2 className="kbp-h2 text-kbp-ink">Pourquoi choisir KBP Distribution ?</h2>
+            <p className="kbp-subtitle mt-4 text-kbp-slate">Un partenaire fiable pour vos besoins en distribution alimentaire</p>
           </div>
 
           <div className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
@@ -110,14 +107,14 @@ export default function HomePage() {
               return (
               <article key={reason.title} className="rounded-3xl bg-white p-8 shadow-soft">
                 <div
-                  className={`mb-6 grid h-16 w-16 place-items-center rounded-2xl ${
+                  className={`kbp-icon-box mb-6 ${
                     isYellow ? "bg-kbp-yellow/35" : "bg-kbp-red/12"
                   }`}
                 >
-                  <Icon className={`h-9 w-9 ${isYellow ? "text-yellow-700" : "text-kbp-red"}`} aria-hidden="true" />
+                  <Icon className={`kbp-icon ${isYellow ? "text-kbp-yellowDeep" : "text-kbp-red"}`} aria-hidden="true" />
                 </div>
-                <h3 className="font-display text-4xl font-semibold text-kbp-ink">{reason.title}</h3>
-                <p className="mt-3 text-xl text-kbp-slate">{reason.description}</p>
+                <h3 className="kbp-h3 text-kbp-ink">{reason.title}</h3>
+                <p className="kbp-subtitle mt-3 text-kbp-slate">{reason.description}</p>
               </article>
               );
             })}
@@ -125,17 +122,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-kbp-red">
-        <div className="mx-auto max-w-5xl px-4 py-20 text-center sm:px-6 lg:px-8">
-          <h2 className="font-display text-6xl font-semibold text-white">Pret a travailler ensemble ?</h2>
-          <p className="mx-auto mt-5 max-w-3xl text-2xl text-white/90">
+      <section className="kbp-hero">
+        <div className="kbp-section mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="kbp-h2 text-white">Pret a travailler ensemble ?</h2>
+          <p className="kbp-body mx-auto mt-5 max-w-3xl text-white/90">
             Contactez-nous des aujourd&apos;hui pour discuter de vos besoins et recevoir un devis personnalise.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="rounded-2xl bg-kbp-yellow px-8 py-4 text-xl font-semibold text-kbp-ink">
+            <Link href="/contact" className="kbp-btn-primary">
               Demander un devis
             </Link>
-            <Link href="/a-propos" className="rounded-2xl border border-white/40 px-8 py-4 text-xl font-semibold text-white">
+            <Link href="/a-propos" className="kbp-btn-secondary">
               En savoir plus
             </Link>
           </div>
